@@ -1,0 +1,21 @@
+{% extends 'interviewmate/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ question.title }}{% endblock %}
+
+{% block body_block %}
+    <h1>{{ question.title }}</h1>
+        <div class="container">
+            <div class="jumbotron">
+                {% if question %}
+                    <p>{{ question.content }}</p>
+                {% else %}
+                    <h1>question does not exist</h1>
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock %}
+
+

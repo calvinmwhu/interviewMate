@@ -101,6 +101,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/interviewmate/login/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),

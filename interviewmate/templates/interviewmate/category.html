@@ -1,26 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>InterviewMate</title>
-</head>
-<body>
-<h1>{{ category_name }}</h1>
-{% if category %}
-    {% if questions %}
-    <ul>
-    {% for question in questions %}
-        <li><a href="#">{{ question.title }}</a></li>
-    {%  endfor %}
-    </ul>
-    {% else %}
-        <strong>No question exist in category</strong>
+{% extends 'interviewmate/base.html' %}
+
+{% load staticfiles %}
+
+
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
+    <h1>{{ category_name }}</h1>
+    {% if category %}
+        {% if questions %}
+        <ul>
+                {% for question in questions %}
+                <li><a href="/interviewmate/question/{{ question.slug }}">{{ question.title }}</a></li>
+                {% endfor %}
+                </ul>
+        {% else %}
+                <strong>No pages currently in category.</strong>
+                {% endif %}
+
+        {% if user.is_authenticated %}
+                <a href="/interviewmate/category/{{ category_name_slug }}/add_question/">Post a question to this category</a>
+                {% endif %}
+        {% else %}
+                 The specified category {{ category_name }} does not exist!
     {% endif %}
-{% else %}
-    <strong>Category {{ category_name }} does not exist</strong>
-{% endif %}
-{% if category %}
-<a href="/interviewmate/category/{{ category_name_slug }}/add_question/">Post a question to this category</a>
-{% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from interviewmate.models import Category, Question
+from interviewmate.models import Category, Question, UserProfile
 # Register your models here.
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(UserProfile)

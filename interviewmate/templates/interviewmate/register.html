@@ -1,157 +1,71 @@
+{#{% extends "interviewmate/base.html" %}#}
+{##}
+{##}
+{#{% block body_block %}#}
+{#    <form role="form" method="post" action="/interviewmate/register/">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <h2 class="form-signin-heading">Sign Up Here</h2>#}
+{##}
+{#        <div class="form-group">#}
+{#            <p class="required"><label for="id_username">Username:</label>#}
+{#                <input class="form-control" id="id_username" maxlength="30" name="username" type="text"#}
+{#                       placeholder="Enter username"/></p>#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <p class="required"><label for="id_email">E-mail:</label>#}
+{#                <input class="form-control" id="id_email" name="email" type="email" placeholder="Enter email"/></p>#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <p class="required"><label for="id_password1">Password:</label>#}
+{#                <input class="form-control" id="id_password1" name="password1" type="password"#}
+{#                       placeholder="Enter password"/></p>#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <p class="required"><label for="id_password2">Password (again):</label>#}
+{#                <input class="form-control" id="id_password2" name="password2" type="password"#}
+{#                       placeholder="Enter password again"/></p>#}
+{#        </div>#}
+{##}
+{#        <button type="submit" class="btn btn-default">Submit</button>#}
+{##}
+{#    </form>#}
+{#{% endblock %}#}
+{##}
+{##}
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>InterviewMate-Signup</title>
-    {% load staticfiles %}
-    <link rel='stylesheet' type='text/css' href="{% static 'interviewmate/css/bootstrap.css' %}"/>
-    <link rel='stylesheet' type='text/css' href="{% static 'interviewmate/css/register_style.css' %}"/>
-    <script src="{% static 'interviewmate/js/register.js' %}"></script>
-
+    <title>Signup</title>
 </head>
 
 <body>
-{#    #}
-{#        <h1>Signup with InterviewMate</h1>#}
-{##}
-{#        {% if registered %}#}
-{#        InterviewMate says: <strong>thank you for registering!</strong>#}
-{#        <a href="/interviewmate/">Return to the homepage.</a><br />#}
-{#        {% else %}#}
-{#        InterviewMate says: <strong>register here!</strong><br />#}
-{##}
-{#        <form id="user_form" method="post" action="{% url 'interviewmate:register' %}"#}
-{#                enctype="multipart/form-data">#}
-{##}
-{#            {% csrf_token %}#}
-{##}
-{#            <!-- Display each form. The as_p method wraps each element in a paragraph#}
-{#                 (<p>) element. This ensures each element appears on a new line,#}
-{#                 making everything look neater. -->#}
-{#            {{ user_form.as_p }}#}
-{#            {{ profile_form.as_p }}#}
-{##}
-{#            <!-- Provide a button to click to submit the form. -->#}
-{#            <input type="submit" name="submit" value="Register" />#}
-{#        </form>#}
-{#        {% endif %}#}
+<h1>Register with InterviewMate</h1>
 
+{% if registered %}
+    InterviewMate says: <strong>thank you for registering!</strong>
+    <a href="/interviewmate/">Return to the homepage.</a><br/>
+{% else %}
+    InterviewMate says: <strong>register here!</strong><br/>
 
-<div class="container">
+    <form id="user_form" method="post" action="/interviewmate/register/"
+          enctype="multipart/form-data">
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form">
-                <h2>Sign Up with InterviewMate
-                    <small>It's free and always will be.</small>
-                </h2>
-                <hr class="colorgraph">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-lg"
-                                   placeholder="First Name" tabindex="1">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="last_name" id="last_name" class="form-control input-lg"
-                                   placeholder="Last Name" tabindex="2">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" id="email" class="form-control input-lg"
-                           placeholder="Email Address" tabindex="4">
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control input-lg"
-                                   placeholder="Password" tabindex="5">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="password" name="password_confirmation" id="password_confirmation"
-                                   class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3">
-					<span class="button-checkbox">
-						<button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-					</span>
-                    </div>
-                    <div class="col-xs-8 col-sm-9 col-md-9">
-                        By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#"
-                                                                                                               data-toggle="modal"
-                                                                                                               data-target="#t_and_c_m">Terms
-                        and Conditions</a> set out by this site, including our Cookie Use.
-                    </div>
-                </div>
+        {% csrf_token %}
 
-                <hr class="colorgraph">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6"><input type="submit" value="Register"
-                                                           class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                    <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">Sign In</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
+        <!-- Display each form. The as_p method wraps each element in a paragraph
+             (<p>) element. This ensures each element appears on a new line,
+             making everything look neater. -->
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam
-                        nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus
-                        ipsa porro delectus quidem dolorem ad.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</div>
-
+        <!-- Provide a button to click to submit the form. -->
+        <input type="submit" name="submit" value="Register"/>
+    </form>
+{% endif %}
 </body>
-
-
 </html>

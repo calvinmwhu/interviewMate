@@ -83,8 +83,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li class="active"><a href="#home" class="scroll">Home</a></li>
 						<li class="page-scroll"><a href="#fea" class="scroll">Features</a></li>
 						<li><a href="/interviewmate/dashboard">Dashboard</a></li>
-						<li><a href="#">Log in</a></li>
-                        <li><a href="#">Sign up</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="#">Hello,{{ user.username }}</a></li>
+                            <li><a href="/interviewmate/logout">logout</a></li>
+                        {% else %}
+                        <li><a href="/interviewmate/login">Log in</a></li>
+                        <li><a href="/interviewmate/register">Sign up</a></li>
+                        {% endif %}
 {#						<li class="contact-active" class="page-scroll"><a href="#contact" class="scroll">Contact</a></li>#}
 					</ul>
 					<a href="#" id="pull"><img src="images/nav-icon.png" title="menu" /></a>

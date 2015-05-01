@@ -1,27 +1,55 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Post a question</title>
-    </head>
+{% extends 'interviewmate/base.html' %}
 
-    <body>
-        <h1>Add a question to category {{ category.name }}</h1>
+{% load staticfiles %}
 
-        <form id="page_form" method="post" action="/interviewmate/category/{{ category.slug }}/add_question/">
+{% block title %}Add question to {{ category.name }}{% endblock %}
+
+{% block body_block %}
+    <h1>Add a question to category {{ category.name }}</h1>
+    <form id="page_form" method="post" action="/interviewmate/category/{{ category.slug }}/add_question/">
 
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
+                <br>
             {% endfor %}
 
             {% for field in form.visible_fields %}
-                {{ field.errors }}
+                {{ field.errors }} <br>
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
 
             <input type="submit" name="submit" value="Post Question" />
         </form>
-    </body>
+{% endblock %}
 
-</html>
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#    <head>#}
+{#        <title>Post a question</title>#}
+{#    </head>#}
+{##}
+{#    <body>#}
+{#        <h1>Add a question to category {{ category.name }}</h1>#}
+{##}
+{#        <form id="page_form" method="post" action="/interviewmate/category/{{ category.slug }}/add_question/">#}
+{##}
+{#            {% csrf_token %}#}
+{#            {% for hidden in form.hidden_fields %}#}
+{#                {{ hidden }}#}
+{#            {% endfor %}#}
+{##}
+{#            {% for field in form.visible_fields %}#}
+{#                {{ field.errors }}#}
+{#                {{ field.help_text }}#}
+{#                {{ field }}#}
+{#            {% endfor %}#}
+{##}
+{#            <input type="submit" name="submit" value="Post Question" />#}
+{#        </form>#}
+{#    </body>#}
+{##}
+{#</html>#}

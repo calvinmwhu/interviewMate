@@ -1,29 +1,83 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Question Categories</title>
-    </head>
+{% extends 'interviewmate/base.html' %}
 
-    <body>
-        <h1>Question Categories</h1>
+{% load staticfiles %}
 
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-                <li><a href="/interviewmate/category/{{ category.slug }}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
+{% block title %}Dashboard{% endblock %}
+{% block body_block %}
+    <div class="page-header">
+        {% if user.is_authenticated %}
+            <h2>Hello, {{ user.username }}</h2>
         {% endif %}
-        <h2>Top viewed questions:</h2>
-        {% if questions %}
-        <ul>
-            {% for question in questions  %}
-                <li><a href="#">{{ question.title }}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+    </div>
+
+    <div class="row placeholders">
+        <div class="col-xs-12 col-sm-6 placeholder">
+            {#            <h4>Categories</h4>#}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+                </div>
+            </div>
+
+            {% if categories %}
+                <ul class="list-group">
+                    {% for category in categories %}
+                        <li class="list-group-item"><a href="/interviewmate/category/{{ category.slug }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no categories present.</strong>
+            {% endif %}
+
+        </div>
+        <div class="col-xs-12 col-sm-6 placeholder">
+            {#            <h4>Top viewed questions:</h4>#}
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Top viewed questions</h3>
+                </div>
+            </div>
+            {% if questions %}
+                <ul class="list-group">
+                    {% for question in questions %}
+                        <li class="list-group-item"><a href="/interviewmate/question/{{ question.slug }}">{{ question.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Question Categories</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% if user.is_authenticated %}#}
+{#    <h2>Hello, {{ user.username }}</h2>#}
+{#{% endif %}#}
+{#<h2>Question Categories</h2>#}
+{##}
+{#{% if categories %}#}
+{#    <ul>#}
+{#        {% for category in categories %}#}
+{#            <li><a href="/interviewmate/category/{{ category.slug }}">{{ category.name }}</a></li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#{% else %}#}
+{#    <strong>There are no categories present.</strong>#}
+{#{% endif %}#}
+{#{% if questions %}#}
+{#    <ul>#}
+{#        {% for question in questions %}#}
+{#            <li><a href="#">{{ question.title }}</a></li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#{% endif %}#}
 {#        <a href="/rango/about/">About</a>#}
-    </body>
-</html>
+{#</body>#}
+{#</html>#}
